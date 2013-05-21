@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'djtt_fp_growth'
+
+
+
+p DjttFpGrowth.run [
+  %w(a b c 1),
+  %w(a d e 2),
+  %w(b c d 2),
+  %w(a b c d 1),
+  %w(b c 1),
+  %w(a b d 2),
+  %w(d e 3),
+  %w(a b c d 4),
+  %w(c d e 5),
+  %w(a b c 6)
+]
