@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'djtt_fp_growth'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.date        = '2013-05-16'
   s.summary     = "FP-Growth used in DJTT"
   s.description = "Wrapper around Christian Borgelt's FP-Growth implemenation"

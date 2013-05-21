@@ -4,7 +4,7 @@ require 'tempfile'
 
 class DjttFpGrowth
   def self.run(transactions, tempdir=Dir.tmpdir)
-    input = Tempfile.open("transactions", tempdir)
+    input = File.open("#{tempdir}/transactions", "w")
     begin
       transactions.each do |transaction|
         input.write("#{transaction.join(" ")}\n")
@@ -13,11 +13,9 @@ class DjttFpGrowth
        input.close
     end
 
-    output = Tempfile.open("results", tempdir)
-    output.close
-    DjttFpGrowth.run_fp_growth ["djtt_fp_growth", "-w", "-s1", input.path, output.path]
+    DjttFpGrowth.run_fp_growth ["djtt_fp_growth", "-w", "-s1", "#{tempdir}/transactions", "#{tempdir}/results"]
 
-    File.read(output.path).split("\n").collect do |item| 
+    File.read("#{tempdir}/results").split("\n").collect do |item| 
       data = item.split(" ")
       support = data.pop
       data + [support.sub("(","").sub(")","").to_i]
